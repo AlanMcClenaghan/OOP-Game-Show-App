@@ -5,6 +5,6 @@
 class Phrase {
     constructor(phrase) {
         this.phrase = phrase.toLowerCase();
-        console.log(this.phrase);
+        // console.log(this.phrase);
     }
 }
