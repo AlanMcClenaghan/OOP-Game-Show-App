@@ -25,10 +25,22 @@ class Game {
      */
     getRandomPhrase() {
         const randomNumber = Math.floor(Math.random() * 5);
-        console.log("randomNumber: " + randomNumber);
+        // console.log("randomNumber: " + randomNumber);
         const randomPhrase = this.phrases[randomNumber];
-        console.log("randomPhrase: " + randomPhrase.phrase);
+        // console.log("randomPhrase: " + randomPhrase.phrase);
         return randomPhrase;
     };
 
+    /**
+     * Begins game by selecting a random phrase and displaying it to user
+     */
+    startGame() {
+        const overlay = document.querySelector('#overlay');
+        console.log(overlay);
+        overlay.style.display = "none";
+        console.log(this.getRandomPhrase().phrase);
+        this.activePhrase = this.getRandomPhrase();
+        console.log("activePhrase: " + this.activePhrase.phrase);
+        this.activePhrase.addPhraseToDisplay();
+    };
 }
