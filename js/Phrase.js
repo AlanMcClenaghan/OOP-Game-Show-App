@@ -13,11 +13,11 @@ class Phrase {
     * Display phrase on game board
     */
     addPhraseToDisplay() {
-        console.log(this.phrase);
+        // console.log(this.phrase);
     
         // Splits phrase into each character
         const phraseToDisplay = this.phrase.split('');
-        console.log(phraseToDisplay);
+        // console.log(phraseToDisplay);
     
         // Variable to hold code snippet to update HTML
         let HTML = "";
@@ -33,14 +33,54 @@ class Phrase {
             }
             HTML += li
         });
-        console.log(HTML);
+        // console.log(HTML);
     
         // Get UL element in Phrase div
         const phraseList = document.querySelector('#phrase ul');
-        console.log(phraseList);
+        //console.log(phraseList);
     
         // Insert Phrase into DOM
         phraseList.innerHTML = HTML;
-
     }
+
+    /**
+     * Checks if passed letter is in phrase
+     * @param (string) letter - Letter to check
+     */
+    checkLetter(letter) {
+
+        // Get LI element in UL element in Phrase div
+        const phraseListItems = document.querySelectorAll('#phrase ul li');
+        // console.log(phraseListItems);
+
+        // Loop through Phrase for letter
+        phraseListItems.forEach(item => {
+            // console.log(item.textContent);
+            if (item.textContent === letter) {
+                return letter
+            }
+        });
+        // console.log(letter);
+        this.showMatchedLetter(letter);
+    };
+
+    /**
+     * Displays passed letter on screen after a match is found
+     * @param (string) letter - Letter to display
+     */
+    // Reveals the letter(s) on the board that matches the player's selection. 
+    showMatchedLetter(letter) {
+        // Select all of the letter DOM elements that have a CSS class name that matches the selected letter  
+        const matchingElements = document.querySelectorAll(`.${letter}`);
+        // console.log(matchingElements);
+
+        // replace each selected element's hide CSS class with the show CSS class.
+        matchingElements.forEach(element => {
+            // console.log(element);
+            element.classList.remove('hide');
+            element.classList.add('show');
+            // console.log(element);
+        });
+    };
+
 }
