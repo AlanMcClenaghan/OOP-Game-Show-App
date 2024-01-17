@@ -120,6 +120,7 @@ class Game {
             overlay.classList.replace("start", "lose");
             // console.log(gameOverMessage.textContent)
         }
+        button.textContent = "Restart Game";
     };
 
     /**
@@ -128,7 +129,7 @@ class Game {
      */
     handleInteraction(button) {
         // Disable selected button
-        button.disabled = 'true';
+        button.disabled = true;
         console.log(button);
 
         // Get letter of nutton
@@ -157,7 +158,5 @@ class Game {
                 this.gameOver(winningGuess);
             }
         }
-
     };
-
 }

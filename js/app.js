@@ -10,10 +10,39 @@ const button = document.querySelector('#btn__reset');
 let keys = document.querySelectorAll('.key')
 // console.log(keys);
 
-// Add Event Listener to Button and Start Game
+// Add Event Listener to Button and Start/Restart Game
 button.addEventListener('click', () => {
-    game = new Game();
-    game.startGame();
+    if (button.textContent === 'Start Game') {
+        game = new Game();
+        game.startGame();
+    } else {
+        // Clear phrase
+        const phraseList = document.querySelector('#phrase ul');
+        console.log(phraseList);
+        phraseList.innerHTML = '';
+
+        // Enable keys
+        keys.forEach(key => {
+            key.disabled = false;
+            key.className = 'key';
+        });
+
+        // Restore Live in the scoreboard
+        const lostHearts = document.querySelectorAll(`img[src="images/lostHeart.png"]`);
+        console.log(lostHearts);
+        lostHearts.forEach(heart => {
+            heart.src = "images/liveHeart.png";
+        });
+        // console.log(liveHearts[0]);
+        console.log(lostHearts);
+
+        // Reset Game
+        console.log(game)
+        game = null;
+        game = new Game();
+        game.startGame();
+    }
+    
 });
 
 // Add Event Listener to Keys and Start Game
