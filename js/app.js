@@ -18,7 +18,7 @@ button.addEventListener('click', () => {
     } else {
         // Clear phrase
         const phraseList = document.querySelector('#phrase ul');
-        console.log(phraseList);
+        // console.log(phraseList);
         phraseList.innerHTML = '';
 
         // Enable keys
@@ -29,15 +29,15 @@ button.addEventListener('click', () => {
 
         // Restore Live in the scoreboard
         const lostHearts = document.querySelectorAll(`img[src="images/lostHeart.png"]`);
-        console.log(lostHearts);
+        // console.log(lostHearts);
         lostHearts.forEach(heart => {
             heart.src = "images/liveHeart.png";
         });
         // console.log(liveHearts[0]);
-        console.log(lostHearts);
+        // console.log(lostHearts);
 
         // Reset Game
-        console.log(game)
+        // console.log(game)
         game = null;
         game = new Game();
         game.startGame();
@@ -48,7 +48,20 @@ button.addEventListener('click', () => {
 // Add Event Listener to Keys and Start Game
 keys.forEach(key => {
     key.addEventListener('click', () => {
-        console.log(key);
+        // console.log(key);
         game.handleInteraction(key);
     });
+});
+
+// Add keyboard functionality
+document.addEventListener('keyup', e => {
+    console.log(e.key);
+    const keyStroke = e.key
+    console.log(keyStroke);
+    keys.forEach(key => {      
+        if (key.textContent === keyStroke) {
+            console.log(key.textContent);
+            game.handleInteraction(key);
+        }
+    })
 });

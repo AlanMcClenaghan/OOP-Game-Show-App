@@ -65,7 +65,7 @@ class Phrase {
                 this.showMatchedLetter(letter);
             } 
         });
-        console.log(letterCorrect);
+        // console.log(letterCorrect);
         // Return Boolean to handleInteraction() method
         return letterCorrect;
     };

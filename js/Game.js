@@ -107,17 +107,17 @@ class Game {
     gameOver(gameWon) {
         const overlay = document.querySelector('#overlay');
         // console.log(overlay);
-        overlay.style.display = "block";
+        overlay.style.display = "flex";
         const gameOverMessage = document.querySelector('#game-over-message');
         // console.log(gameOverMessage.textContent);
 
         if (gameWon) {
             gameOverMessage.textContent = "Congratulation! You Win!";
-            overlay.classList.replace("start", "win");
+            overlay.className = "win";
             // console.log(gameOverMessage.textContent);
         } else {
             gameOverMessage.textContent = "Sorry, better luck next time";
-            overlay.classList.replace("start", "lose");
+            overlay.className = "lose";
             // console.log(gameOverMessage.textContent)
         }
         button.textContent = "Restart Game";
