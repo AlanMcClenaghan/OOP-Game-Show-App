@@ -53,15 +53,21 @@ class Phrase {
         const phraseListItems = document.querySelectorAll('#phrase ul li');
         // console.log(phraseListItems);
 
+        // Variable to hold Boolean set to false
+        let letterCorrect = false;
+
         // Loop through Phrase for letter
         phraseListItems.forEach(item => {
             // console.log(item.textContent);
             if (item.textContent === letter) {
-                return letter
-            }
+                // Set Boolean to true
+                letterCorrect = true;
+                this.showMatchedLetter(letter);
+            } 
         });
-        // console.log(letter);
-        this.showMatchedLetter(letter);
+        console.log(letterCorrect);
+        // Return Boolean to handleInteraction() method
+        return letterCorrect;
     };
 
     /**

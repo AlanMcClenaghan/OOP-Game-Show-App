@@ -56,13 +56,15 @@ class Game {
         // Get Hidden Letters and convert to array
         let phraseListItems = document.querySelectorAll('#phrase ul li');
         phraseListItems = Array.from(phraseListItems);
-        // console.log(phraseListItems);
+        console.log(phraseListItems);
 
         // Count number of hidden letters
         const hiddenLetters = phraseListItems.reduce((count, item) => {
             if (item.classList.contains('hide')) {
+                console.log(count);
                 return count + 1;
-            } 
+            }
+            console.log(count);
             return count
         }, 0);
 
@@ -120,23 +122,42 @@ class Game {
         }
     };
 
-    
-
     /**
      * Handles onscreen keyboard button clicks
      * @param (HTMLButtonElement) button - The clicked button element
      */
     handleInteraction(button) {
-
-
-
-
-
+        // Disable selected button
+        button.disabled = 'true';
         console.log(button);
+
+        // Get letter of nutton
+        const letter = button.textContent;
+        console.log(letter);
+
+        // Calls Checkletter method and sets Boolean true or false
+        const letterCorrect = this.activePhrase.checkLetter(letter);
+        console.log(letterCorrect);
+
+
+        // If letter is incorrect/Correct
+        if (!letterCorrect) {
+            // Set button class to wrong
+            button.classList.add('wrong');
+            // Remove a life
+            this.removeLife();
+        } else {
+            // Set button class to chosen
+            button.classList.add('chosen');
+            // Checks for win true or false
+            const winningGuess = this.checkForWin();
+            console.log(winningGuess);
+            // If winning guess call gameOver
+            if (winningGuess) {
+                this.gameOver(winningGuess);
+            }
+        }
+
     };
-
-
-
-
 
 }
