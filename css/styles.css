@@ -202,3 +202,12 @@ button {
 .lose a {
   color: var(--color-lose);
 }
+
+.animate {
+  position: relative;
+}
+
+@keyframes slide {
+  from {top: -1000px;}
+  to {top: 0px;}
+}

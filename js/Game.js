@@ -2,11 +2,9 @@
  * Project 4 - OOP Game App
  * Game.js */
 
-
 class Game {
     constructor() {
         this.missed = 0;
-        // console.log(this.missed);
         this.phrases = [
             new Phrase('A piece of cake'),
             new Phrase('Call it a day'),
@@ -14,9 +12,7 @@ class Game {
             new Phrase('The best of both worlds'),
             new Phrase('The last straw')
         ];
-        // console.log(this.phrases);
         this.activePhrase = null;
-        // console.log(this.activePhrase);
     }
 
     /**
@@ -25,9 +21,7 @@ class Game {
      */
     getRandomPhrase() {
         const randomNumber = Math.floor(Math.random() * 5);
-        // console.log("randomNumber: " + randomNumber);
         const randomPhrase = this.phrases[randomNumber];
-        // console.log("randomPhrase: " + randomPhrase.phrase);
         return randomPhrase;
     };
 
@@ -36,15 +30,9 @@ class Game {
      */
     startGame() {
         const overlay = document.querySelector('#overlay');
-        // console.log(overlay);
         overlay.style.display = "none";
-        // console.log(this.getRandomPhrase().phrase);
         this.activePhrase = this.getRandomPhrase();
-        // console.log("activePhrase: " + this.activePhrase.phrase);
         this.activePhrase.addPhraseToDisplay();
-        // this.activePhrase.checkLetter('e');
-        // console.log(this.checkForWin());
-        // this.removeLife();
     };
 
     /**
@@ -56,15 +44,12 @@ class Game {
         // Get Hidden Letters and convert to array
         let phraseListItems = document.querySelectorAll('#phrase ul li');
         phraseListItems = Array.from(phraseListItems);
-        console.log(phraseListItems);
 
         // Count number of hidden letters
         const hiddenLetters = phraseListItems.reduce((count, item) => {
             if (item.classList.contains('hide')) {
-                console.log(count);
                 return count + 1;
             }
-            console.log(count);
             return count
         }, 0);
 
@@ -83,16 +68,12 @@ class Game {
      * Checks if player has remaining lives and ends game if player is out
      */
     removeLife() {
-        // console.log(this.missed);
         // Increment missed property
         this.missed += 1;
-        // console.log(this.missed);
 
         // Remove a life from the scoreboard
         const liveHearts = document.querySelectorAll(`img[src="images/liveHeart.png"]`);
-        // console.log(liveHearts);
         liveHearts[0].src = "images/lostHeart.png";
-        // console.log(liveHearts[0]);
 
         // If player has no more lives, end the game
         if (this.missed === 5) {
@@ -106,21 +87,23 @@ class Game {
      */
     gameOver(gameWon) {
         const overlay = document.querySelector('#overlay');
-        // console.log(overlay);
         overlay.style.display = "flex";
         const gameOverMessage = document.querySelector('#game-over-message');
-        // console.log(gameOverMessage.textContent);
 
         if (gameWon) {
             gameOverMessage.textContent = "Congratulation! You Win!";
             overlay.className = "win";
-            // console.log(gameOverMessage.textContent);
+            button.textContent = "Restart Game";
         } else {
             gameOverMessage.textContent = "Sorry, better luck next time";
             overlay.className = "lose";
-            // console.log(gameOverMessage.textContent)
+            button.textContent = "Try Again!";
         }
-        button.textContent = "Restart Game";
+
+        button.style.animation = "slide 4s 1";
+
+        gameOverMessage.style.animation = "slide 1s 1";
+
     };
 
     /**
@@ -129,17 +112,13 @@ class Game {
      */
     handleInteraction(button) {
         // Disable selected button
-        button.disabled = true;
-        console.log(button);
+        button.disabled = true
 
         // Get letter of nutton
         const letter = button.textContent;
-        console.log(letter);
 
         // Calls Checkletter method and sets Boolean true or false
         const letterCorrect = this.activePhrase.checkLetter(letter);
-        console.log(letterCorrect);
-
 
         // If letter is incorrect/Correct
         if (!letterCorrect) {
@@ -152,7 +131,6 @@ class Game {
             button.classList.add('chosen');
             // Checks for win true or false
             const winningGuess = this.checkForWin();
-            console.log(winningGuess);
             // If winning guess call gameOver
             if (winningGuess) {
                 this.gameOver(winningGuess);
